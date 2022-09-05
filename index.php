@@ -3,7 +3,8 @@
     $tabMenu = [
         "home" => "home.php",
         "smartphone" => "smartphone.php",
-        "jeux" => "jeux.php"
+        "jeux" => "jeux.php",
+        "produit"=>"produit.php"
     ];
 
     if(isset($_GET['action']))
