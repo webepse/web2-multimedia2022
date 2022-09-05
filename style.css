@@ -1,0 +1,185 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: 8vh;
+    justify-content: space-between;
+    padding-top: 10px;
+    box-shadow: 0px 2px 5px black;
+    padding-bottom: 15px;
+}
+
+#logo{
+    width: 20%;
+    font-size: 25px;
+    color: red;
+    font-weight: bolder;
+    text-align: center;
+}
+
+header form{
+    width: 60%;
+}
+
+header form #search{
+    width: 80%;
+}
+
+#connexion{
+    width: 20%;
+    text-align: center;
+}
+
+nav{
+    width: 100%;
+}
+
+nav ul{
+    display: flex;
+    width: 100%;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+nav ul li{
+    width: 20%;
+    text-align: center;
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: black;
+}
+
+main{
+    min-height: 80vh;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+footer{
+    background-color: black;
+    color: white;
+    text-align: center;
+    height: 12vh;
+}
+
+/* home */
+.container{
+    display: grid;
+    width: 80%;
+    margin: 0 auto;
+    grid-template-columns: repeat(3,1fr);
+    gap: 10px 15px;
+}
+
+.card{
+    border: solid 1px black;
+    padding: 15px;
+    text-align: center;
+}
+
+.card-img img{
+    height: 200px;
+}
+
+main h1{
+    text-align: center;
+}
+
+/* produit */
+
+/* inscription */
+
+.container form{
+   grid-column: 2;
+}
+
+header .form-group{
+    display: block;
+}
+
+.form-group{
+    width: 100%;
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-control{
+    width: 100%;
+    padding: 5px 2px;
+    margin: 5px 0;
+}
+
+.alert{
+    width: 100%;
+    padding: 5px 2px;
+    margin: 5px 0;
+    background-color: #e45353;
+}
+
+#connex{
+    grid-column: 2/span 1;
+    width: 100%;
+}
+
+.container-product{
+    text-align: center;
+}
+
+.commentaires{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.coms{
+    width: 60%;
+    margin: 15px auto;
+    border: solid 1px black;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.comsInfo{
+    color: white;
+    background-color: dodgerblue;
+    display: flex;
+    padding: 5px;
+}
+
+.comTxt{
+    padding: 15px 5px;
+    text-align: left;
+}
+
+.date{
+    margin-left: 10px;
+}
+
+.author{
+    color: white;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+.user h4{
+    text-align: center;
+}
+
+.form-com{
+    width: 60%;
+    margin: 0 auto;
+}
+
+.form-com textarea{
+    padding: 5px;
+    resize: none;
+}
+
