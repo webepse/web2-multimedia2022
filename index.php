@@ -54,5 +54,8 @@
             include("pages/".$menu);
         ?>
     </main>
+    <footer>
+        <p>&copy; Copyright EPSE 2022</p>
+    </footer>
 </body>
 </html>
