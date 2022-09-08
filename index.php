@@ -11,7 +11,29 @@
     {
         if(array_key_exists($_GET['action'],$tabMenu))
         {
-            $menu = $tabMenu[$_GET['action']];
+            if($_GET['action']=="produit")
+            {
+                if(isset($_GET['id']) AND !empty($_GET['id']))
+                {
+                    $id = htmlspecialchars($_GET['id']);
+                    $produit = $bdd->prepare("SELECT * FROM produits WHERE id=?");
+                    $produit->execute([$id]);
+                    if(!$donProduct = $produit->fetch())
+                    {
+                        $produit->closeCursor();
+                        header("LOCATION:404.php");
+                    }else{
+                        $menu= $tabMenu['produit'];
+                        $produit->closeCursor();
+                    }
+                }else{
+                    header("LOCATION:404.php");
+                }
+            }else{
+                $menu = $tabMenu[$_GET['action']];
+            }
+
+
         }else{
             header("LOCATION:404.php");
         }
