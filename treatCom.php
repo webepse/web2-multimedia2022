@@ -5,10 +5,13 @@
         header("LOCATION:404.php");
     }
 
-    if(isset($_GET['id']) AND isset($_POST['com']))
+    if(isset($_GET['id']) AND !empty($_GET['id']) AND isset($_POST['com']))
     {
         $id= htmlspecialchars($_GET['id']);
         $err=0;
+
+        //todo - vérifier si l'id du produit existe
+
         if(empty($_POST['com']))
         {
             $err=1;
