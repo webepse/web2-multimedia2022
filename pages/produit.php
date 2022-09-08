@@ -13,6 +13,25 @@
             </div>
             <div class="commentaires">
                 <h1>Les avis</h1>
+                <?php 
+                    if(isset($_SESSION['login']))
+                    {
+                ?>
+                    <div class="form-com">
+                        <form action="treatCom.php?id=" method="POST">
+                            <div class="form-log"><?= $_SESSION['login'] ?></div>
+                            <div class="form-group">
+                                <textarea name="com" id="com" cols="30" rows="10"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Envoyer">
+                            </div>
+                        </form>
+                    </div>
+                <?php
+                    }
+
+                ?>
             </div>
         <?php
             $coms = $bdd->prepare("SELECT commentaires.texte AS ctexte, DATE_FORMAT(commentaires.date, '%d/%m/%Y %Hh%i') AS mydate, membre.login AS mlogin, commentaires.id AS cid FROM commentaires INNER JOIN membre ON commentaires.id_membre = membre.id WHERE commentaires.id_produit=? ORDER BY commentaires.date DESC");
