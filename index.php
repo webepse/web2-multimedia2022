@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require "connexion.php";
     $tabMenu = [
         "home" => "home.php",
@@ -30,7 +31,16 @@
                 }else{
                     header("LOCATION:404.php");
                 }
-            }else{
+            }elseif($_GET['action']=="connexion")
+            {
+                if(isset($_SESSION['login']))
+                {
+                    $menu = $tabMenu['home']; 
+                }else{
+                    $menu = $tabMenu[$_GET['action']];
+                }
+            }
+            else{
                 $menu = $tabMenu[$_GET['action']];
             }
 
@@ -40,6 +50,12 @@
         }
     }else{
         $menu = $tabMenu['home']; 
+    }
+
+    //déconnexion
+    if(isset($_GET['deco'])){
+        session_destroy();
+        header("LOCATION:index.php");
     }
 
 ?>
@@ -61,8 +77,20 @@
             <input type="submit" value="Rechercher">
         </form>
         <div id="connexion">
-            <a href="#">Inscription</a>
-            <a href="index.php?action=connexion">Connexion</a>
+            <?php
+                if(!isset($_SESSION['login'])){
+                    echo '<a href="#">Inscription</a>';
+                    echo '<a href="index.php?action=connexion">Connexion</a>';
+                }else{
+                    echo "Bonjour, ".$_SESSION['login'].'<br>';
+                    if($_SESSION['level']=="administrateur")
+                    {
+                        echo "<a href=''>Administration</a><br>";
+                    }
+
+                    echo "<a href='index.php?deco=ok'>Déconnexion</a>";
+                }
+            ?>
         </div>
         <nav>
             <ul>
