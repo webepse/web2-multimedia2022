@@ -4,7 +4,8 @@
         "home" => "home.php",
         "smartphone" => "smartphone.php",
         "jeux" => "jeux.php",
-        "produit"=>"produit.php"
+        "produit"=>"produit.php",
+        "connexion"=>"connect.php"
     ];
 
     if(isset($_GET['action']))
@@ -61,7 +62,7 @@
         </form>
         <div id="connexion">
             <a href="#">Inscription</a>
-            <a href="#">Connexion</a>
+            <a href="index.php?action=connexion">Connexion</a>
         </div>
         <nav>
             <ul>
