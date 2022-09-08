@@ -18,7 +18,7 @@
                     {
                 ?>
                     <div class="form-com">
-                        <form action="treatCom.php?id=" method="POST">
+                        <form action="treatCom.php?id=<?= $id ?>" method="POST">
                             <div class="form-log"><?= $_SESSION['login'] ?></div>
                             <div class="form-group">
                                 <textarea name="com" id="com" cols="30" rows="10"></textarea>
