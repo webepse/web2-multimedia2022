@@ -6,7 +6,8 @@
         "smartphone" => "smartphone.php",
         "jeux" => "jeux.php",
         "produit"=>"produit.php",
-        "connexion"=>"connect.php"
+        "connexion"=>"connect.php",
+        "update"=>"updateCom.php"
     ];
 
     if(isset($_GET['action']))
@@ -38,6 +39,29 @@
                     $menu = $tabMenu['home']; 
                 }else{
                     $menu = $tabMenu[$_GET['action']];
+                }
+            }elseif($_GET['action']=="update")
+            {
+                if(isset($_GET['id']) AND !empty($_GET['id']))
+                {
+                    $comId= htmlspecialchars($_GET['id']);
+                    $reqCom = $bdd->prepare("SELECT * FROM commentaires WHERE id=?");
+                    $reqCom->execute([$comId]);
+                    if(!$donCom = $reqCom->fetch())
+                    {
+                        $reqCom->closeCursor();
+                        header("LOCATION:index.php");
+                    }else{
+                        $reqCom->closeCursor();
+                        if($_SESSION['id']==$donCom['id_membre'])
+                        {
+                            $menu = $tabMenu['update'];
+                        }else{
+                            header("LOCATION:403.php");
+                        }
+                    }
+                }else{
+                    header("LOCATION:404.php");
                 }
             }
             else{
