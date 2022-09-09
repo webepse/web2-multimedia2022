@@ -48,7 +48,7 @@
                         {
                             if($_SESSION['level']=="administrateur")
                             {
-                                echo "<a href='#'>Supprimer</a>";
+                                echo "<a href='treatDelete.php?id=".$donComs['cid']."'>Supprimer</a>";
                             }
 
                             if($_SESSION['id']==$donComs['mid'])
