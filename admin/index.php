@@ -22,6 +22,9 @@
     <title>Document</title>
 </head>
 <body>
+    <?php
+        include("assets/nav.php");
+    ?>
     <div class="container-fluid">
         <h1>Administration</h1>
     </div>
