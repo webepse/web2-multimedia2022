@@ -3,8 +3,8 @@
             <h3><?= $donProduct['marque'] ?></h3>
             <h1><?= $donProduct['nom'] ?></h1>
             <div class="image">
-                <a href="image/<?= $donProduct['image'] ?>">
-                    <img src="image/<?= $donProduct['image'] ?>" alt="image de <?= $donProduct['nom'] ?>">
+                <a href="images/<?= $donProduct['image'] ?>">
+                    <img src="images/<?= $donProduct['image'] ?>" alt="image de <?= $donProduct['nom'] ?>">
                 </a>
             </div>
             <h3><?= $donProduct['prix'] ?>€</h3>

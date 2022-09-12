@@ -25,7 +25,7 @@
     ?>
         <div class="card">
             <div class="card-img">
-                <img src="image/<?= $don['image'] ?>" alt="image de <?= $don['nom'] ?>">
+                <img src="images/<?= $don['image'] ?>" alt="image de <?= $don['nom'] ?>">
             </div>
             <div class="card-body">
                 <div class="model"><a href="index.php?action=produit&id=<?= $don['id']?>"><?= $don['nom'] ?></a></div>
