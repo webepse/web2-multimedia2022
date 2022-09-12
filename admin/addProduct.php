@@ -27,7 +27,7 @@
     ?>
     <div class="container">
         <h2>Ajouter un produit</h2>
-       <form action="treatmentAddProduct.php" method="POST">
+       <form action="treatmentAddProduct.php" method="POST" enctype="multipart/form-data">
            <div class="form-group my-3">
                <label for="marque">Marque:</label>
                <input type="text" name="marque" id="marque" class="form-control">

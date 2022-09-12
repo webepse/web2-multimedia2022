@@ -78,8 +78,28 @@
                 if(move_uploaded_file($_FILES['image']['tmp_name'], $dossier.$fichiercptl))
                 {
                     // insertion dans la bdd
+                    require "../connexion.php";
+                    $insert = $bdd->prepare("INSERT INTO produits(nom,prix,description,type,marque,image) VALUES(:nom,:prix,:description,:type,:marque,:image)");
+                    $insert->execute([
+                        ":nom"=>$nom,
+                        ":prix"=>$prix,
+                        ":description"=>$description,
+                        ":type"=>$type,
+                        ":marque"=>$marque,
+                        ":image"=>$fichiercptl
+                    ]);
+                    $insert->closeCursor();
+
+                    if($extension==".png")
+                    {
+                        header("LOCATION:redimpng.php?image=".$fichiercptl);
+                    }else{
+                        header("LOCATION:redim.php?image=".$fichiercptl);
+                    }
+
                 }else{
-                    // error
+                    // error upload
+                    header("LOCATION:addProduct.php?errimg=3");
                 }
 
             }else{
