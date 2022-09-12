@@ -28,6 +28,12 @@
     ?>
     <div class="container">
         <h1>Admin Produits</h1>
+        <?php
+            if(isset($_GET['add']))
+            {
+                echo '<div class="alert alert-success">Vous avez bien ajouté un produit à la base de données</div>';
+            }
+        ?>
         <a href="addProduct.php" class='btn btn-primary'>Ajouter</a>
         <table class='table table-striped'>
             <thead>

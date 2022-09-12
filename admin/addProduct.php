@@ -60,6 +60,27 @@
             </div>
 
        </form>
+       <?php
+            if(isset($_GET['error']))
+            {
+                echo "<div class='alert alert-danger'>Une erreur est survenue (code: ".$_GET['error']." )</div>";
+            }
+
+            if(isset($_GET['errimg']))
+            {
+                switch($_GET['errimg'])
+                {
+                    case 1: 
+                        echo "<div class='alert alert-danger'>Le format du fichier n'est pas accepté</div>";
+                        break;
+                    case 2:
+                        echo "<div class='alert alert-danger'>La taille du fichier dépasse 2M</div>"; 
+                        break;
+                    default:
+                        echo "<div class='alert alert-danger'>Une erreur est survenue</div>";      
+                }
+            }
+       ?>
     </div>
 </body>
 </html>
