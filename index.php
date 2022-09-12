@@ -119,7 +119,7 @@
                     echo "Bonjour, ".$_SESSION['login'].'<br>';
                     if($_SESSION['level']=="administrateur")
                     {
-                        echo "<a href=''>Administration</a><br>";
+                        echo "<a href='admin/'>Administration</a><br>";
                     }
 
                     echo "<a href='index.php?deco=ok'>Déconnexion</a>";
