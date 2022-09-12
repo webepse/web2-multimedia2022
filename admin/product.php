@@ -56,7 +56,7 @@
                             echo "<td>".$donProd['prix']."€</td>";
                             echo "<td>".$donProd['type']."</td>";
                             echo "<td>";
-                                echo "<a href='#' class='btn btn-warning mx-3'>Modifier</a>";
+                                echo "<a href='updateProduct.php?id=".$donProd['id']."' class='btn btn-warning mx-3'>Modifier</a>";
                                 echo "<a href='#' class='btn btn-danger mx-3'>Supprimer</a>";
                             echo "</td>";
                         echo "</tr>";
