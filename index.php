@@ -7,7 +7,8 @@
         "jeux" => "jeux.php",
         "produit"=>"produit.php",
         "connexion"=>"connect.php",
-        "update"=>"updateCom.php"
+        "update"=>"updateCom.php",
+        "register"=>"register.php"
     ];
 
     if(isset($_GET['action']))
@@ -64,6 +65,15 @@
                     header("LOCATION:404.php");
                 }
             }
+            elseif($_GET['action']=="register")
+            {
+                if(isset($_SESSION['login']))
+                {
+                    header("LOCATION:index.php");
+                }else{
+                    $menu = $tabMenu['register'];
+                }
+            }
             else{
                 $menu = $tabMenu[$_GET['action']];
             }
@@ -103,7 +113,7 @@
         <div id="connexion">
             <?php
                 if(!isset($_SESSION['login'])){
-                    echo '<a href="#">Inscription</a>';
+                    echo '<a href="index.php?action=register">Inscription</a>';
                     echo '<a href="index.php?action=connexion">Connexion</a>';
                 }else{
                     echo "Bonjour, ".$_SESSION['login'].'<br>';
