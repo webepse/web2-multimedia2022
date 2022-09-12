@@ -43,7 +43,7 @@
         include("assets/nav.php");
     ?>
     <div class="container">
-        <h2>Ajouter un produit</h2>
+        <h2>Modifier un produit</h2>
        <form action="treatmentAddProduct.php" method="POST" enctype="multipart/form-data">
            <div class="form-group my-3">
                <label for="marque">Marque:</label>
