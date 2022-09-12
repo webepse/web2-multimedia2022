@@ -57,7 +57,14 @@
         // verif si error
         if($err==0)
         {
-
+            $insert = $bdd->prepare("INSERT INTO membre(login,mdp,mail,level) VALUES(:login,:mdp,:mail,'membre')");
+            $insert->execute([
+                ":login" => $login,
+                ":mdp" => $hash,
+                ":mail" => $email
+            ]);
+            $insert->closeCursor();
+            header("LOCATION:index.php?action=connexion&register=ok");
         }else{
             header("LOCATION:index.php?action=register&error=".$err);
         }
