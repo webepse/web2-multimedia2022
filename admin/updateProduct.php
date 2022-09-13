@@ -36,14 +36,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <title>Admin - AddProduct</title>
+    <title>Admin - Update product</title>
 </head>
 <body>
     <?php 
         include("assets/nav.php");
     ?>
     <div class="container">
-        <h2>Modifier un produit</h2>
+        <h2>Modifier un produit - <?= $don['marque'] ?> <?= $don['nom'] ?></h2>
        <form action="treatmentUpdateProduct.php?id=<?= $id ?>" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $don['id'] ?>">
            <div class="form-group my-3">

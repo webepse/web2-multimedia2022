@@ -33,6 +33,10 @@
             {
                 echo '<div class="alert alert-success">Vous avez bien ajouté un produit à la base de données</div>';
             }
+            if(isset($_GET['update']))
+            {
+                echo '<div class="alert alert-warning">Vous avez bien modifié le produit <strong>n°'.$_GET['update'].'</strong></div>';
+            }
         ?>
         <a href="addProduct.php" class='btn btn-primary'>Ajouter</a>
         <table class='table table-striped'>
