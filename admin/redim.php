@@ -49,6 +49,11 @@ imagejpeg($destination,$rep_nom,80);
 
 // redirection
 
-header("LOCATION:product.php?add=success");
+if(isset($_GET['update']))
+{
+    header("LOCATION:product.php?update=".$_GET['update']);
+}else{
+    header("LOCATION:product.php?add=success");
+}
 
 ?>

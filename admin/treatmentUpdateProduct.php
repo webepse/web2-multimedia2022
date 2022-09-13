@@ -86,66 +86,80 @@
 
                 header("LOCATION:product.php?update=".$id);
             }else{
-                echo "une image est présente";
+             
+
+                $dossier = "../images/"; // ../images/monfichier.jpg
+                $fichier = basename($_FILES['image']['name']);
+                $taille_maxi = 2000000;
+                $taille = filesize($_FILES['image']['tmp_name']);
+                $extensions = ['.png','.jpg','.jpeg'];
+                $extension = strrchr($_FILES['image']['name'],'.');
+
+                if(!in_array($extension, $extensions))
+                {
+                    $erreur = 1;
+                }
+                
+                if($taille>$taille_maxi){
+                    $erreur = 2;
+                }
+
+                if(!isset($erreur))
+                {
+                    // traitement
+                    $fichier = strtr($fichier, 
+                        'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ', 
+                        'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+                    $fichier = preg_replace('/([^.a-z0-9]+)/i','-',$fichier); 
+                    $fichiercptl = rand().$fichier; 
+                    
+                    if(move_uploaded_file($_FILES['image']['tmp_name'], $dossier.$fichiercptl))
+                    {
+                        // supprimer les images existantes
+
+                        unlink("../images/".$don['image']);
+                        unlink("../images/mini_".$don['image']);
+
+                        // insertion dans la bdd
+                        $update = $bdd->prepare("UPDATE produits SET nom=:nom, prix=:prix, description=:description, type=:type, marque=:marque, image=:image WHERE id=:myid");
+                        $update->execute([
+                                        ":nom"=>$nom,
+                                        ":prix"=>$prix,
+                                        ":description"=>$description,
+                                        ":type"=>$type,
+                                        ":marque"=>$marque,
+                                        ":image"=>$fichiercptl,
+                                        ":myid"=>$id
+                                    ]);
+                        $update->closeCursor();
+
+                        if($extension==".png")
+                        {
+                            header("LOCATION:redimpng.php?update=".$id."&image=".$fichiercptl);
+                        }else{
+                            header("LOCATION:redim.php?update=".$id."&image=".$fichiercptl);
+                        }
+
+                    }else{
+                        // error upload
+                        header("LOCATION:updateProduct.php?id=".$id."&errimg=3");
+                    }
+
+                }else{
+                    header("LOCATION:updateProduct.php?id=".$id."&errimg=".$erreur);
+                }
+
+
+
+
             }
             
 
 
-            // $dossier = "../images/"; // ../images/monfichier.jpg
-            // $fichier = basename($_FILES['image']['name']);
-            // $taille_maxi = 2000000;
-            // $taille = filesize($_FILES['image']['tmp_name']);
-            // $extensions = ['.png','.jpg','.jpeg'];
-            // $extension = strrchr($_FILES['image']['name'],'.');
+          
 
-            // if(!in_array($extension, $extensions))
-            // {
-            //     $erreur = 1;
-            // }
+       
             
-            // if($taille>$taille_maxi){
-            //     $erreur = 2;
-            // }
-
-            // if(!isset($erreur))
-            // {
-            //     // traitement
-            //     $fichier = strtr($fichier, 
-			// 		  'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ', 
-			// 		  'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
-            //     $fichier = preg_replace('/([^.a-z0-9]+)/i','-',$fichier); 
-            //     $fichiercptl = rand().$fichier; 
-                
-            //     if(move_uploaded_file($_FILES['image']['tmp_name'], $dossier.$fichiercptl))
-            //     {
-            //         // insertion dans la bdd
-            //         require "../connexion.php";
-            //         $insert = $bdd->prepare("INSERT INTO produits(nom,prix,description,type,marque,image) VALUES(:nom,:prix,:description,:type,:marque,:image)");
-            //         $insert->execute([
-            //             ":nom"=>$nom,
-            //             ":prix"=>$prix,
-            //             ":description"=>$description,
-            //             ":type"=>$type,
-            //             ":marque"=>$marque,
-            //             ":image"=>$fichiercptl
-            //         ]);
-            //         $insert->closeCursor();
-
-            //         if($extension==".png")
-            //         {
-            //             header("LOCATION:redimpng.php?image=".$fichiercptl);
-            //         }else{
-            //             header("LOCATION:redim.php?image=".$fichiercptl);
-            //         }
-
-                // }else{
-                //     // error upload
-                //     header("LOCATION:updateProduct.php?id=".$id."&errimg=3");
-                // }
-
-            // }else{
-            //     header("LOCATION:updateProduct.php?id=".$id."&errimg=".$erreur);
-            // }
 
         }else{
             header("LOCATION:updateProduct.php?id=".$id."&error=".$err);
