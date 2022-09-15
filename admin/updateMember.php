@@ -45,7 +45,7 @@
     <div class="container">
     <h1>Modifier membre: <?= $don['login'] ?></h1>
 <div class="container">
-    <form action="treatRegister.php" method="POST">
+    <form action="treatmentUpdateMember.php?id=<?= $id ?>" method="POST">
         <div class="form-group my-2">
             <input type="text" name="login" id="login" placeholder="Login" class="form-control" value="<?= $don['login'] ?>">
         </div>
