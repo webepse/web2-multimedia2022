@@ -11,6 +11,32 @@
     }
 
     require "../connexion.php";
+
+    if(isset($_GET['membreDelete']))
+    {
+        $id = htmlspecialchars($_GET['membreDelete']);
+        $memberDel = $bdd->prepare("SELECT * FROM membre WHERE id=?");
+        $memberDel->execute([$id]);
+        if(!$donDel = $memberDel->fetch())
+        {
+            $memberDel->closeCursor();
+            header("LOCATION:member.php");
+        }
+        $memberDel->closeCursor();
+        // ne pas oublie de mettre un compte anonyme avec un id 0
+        $comUp = $bdd->prepare("UPDATE commentaires SET id_membre=0 WHERE id_membre=?");
+        $comUp->execute([$id]);
+        $comUp->closeCursor();
+
+        $delete = $bdd->prepare("DELETE FROM membre WHERE id=?");
+        $delete->execute([$id]);
+        $delete->closeCursor();
+
+        header("LOCATION:member.php?delete=".$id);
+
+    }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +86,7 @@
                                 echo "<a href='updateMember.php?id=".$donMember['id']."' class='btn btn-warning mx-3'>Modifier</a>";
                                 if($_SESSION['id']!=$donMember['id'])
                                 {
-                                    echo "<a href='' class='btn btn-danger mx-3'>Supprimer</a>";
+                                    echo "<a href='member.php?membreDelete=".$donMember['id']."' class='btn btn-danger mx-3'>Supprimer</a>";
                                 }
                             echo "</td>";
                         echo "</tr>";
