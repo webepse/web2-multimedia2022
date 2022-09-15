@@ -25,10 +25,10 @@
         </div>
             <?php
             }
-            $req->closeCursor();
         }else{
             echo "<p>Aucun résultat</p>";
         }        
+        $req->closeCursor();
     ?>
 
 </div>
