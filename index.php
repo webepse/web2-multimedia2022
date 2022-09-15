@@ -8,7 +8,8 @@
         "produit"=>"produit.php",
         "connexion"=>"connect.php",
         "update"=>"updateCom.php",
-        "register"=>"register.php"
+        "register"=>"register.php",
+        "search" => "search.php"
     ];
 
     if(isset($_GET['action']))
@@ -77,8 +78,6 @@
             else{
                 $menu = $tabMenu[$_GET['action']];
             }
-
-
         }else{
             header("LOCATION:404.php");
         }
@@ -92,6 +91,13 @@
         header("LOCATION:index.php");
     }
 
+    if(isset($_GET['search']))
+    {
+        $search=htmlspecialchars($_GET['search']);
+    }else{
+        $search="";
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -106,8 +112,9 @@
 <body>
     <header>
         <div id="logo">Multimédia</div>
-        <form action="#">
-            <input type="text" name="search" id="search" placeholder="Votre recherche">
+        <form action="index.php">
+            <input type="hidden" name="action" value="search">
+            <input type="text" name="search" id="search" placeholder="Votre recherche" value="<?= $search ?>">
             <input type="submit" value="Rechercher">
         </form>
         <div id="connexion">

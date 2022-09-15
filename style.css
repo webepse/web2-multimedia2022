@@ -183,3 +183,6 @@ header .form-group{
     resize: none;
 }
 
+.info-search{
+    grid-column: 1 / span 3;
+}

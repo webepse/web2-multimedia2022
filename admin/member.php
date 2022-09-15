@@ -74,7 +74,7 @@
            </thead>
            <tbody>
                 <?php
-                    $members = $bdd->query("SELECT * FROM membre");
+                    $members = $bdd->query("SELECT * FROM membre WHERE id!=0");
                     while($donMember = $members->fetch())
                     {
                         echo "<tr>";
