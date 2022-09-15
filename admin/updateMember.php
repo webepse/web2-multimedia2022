@@ -55,6 +55,21 @@
         <div class="form-group my-2">
             <input type="email" name="email" id="email" placeholder="Votre adresse E-mail" class="form-control" value="<?= $don['mail'] ?>">
         </div>
+        <div class="form-group-my-2">
+            <label for="level">Statut:</label>
+            <select name="level" id="level" class="form-control">
+                <?php
+                    if($don['level']=="administrateur")
+                    {
+                        echo '<option value="membre">Membre</option>';
+                        echo '<option value="administrateur" selected>Administrateur</option>';
+                    }else{
+                        echo '<option value="membre" selected>Membre</option>';
+                        echo '<option value="administrateur">Administrateur</option>';
+                    }
+                ?>       
+            </select>
+        </div>
         <div class="form-group my-2">
             <input type="submit" value="Modifier" class="btn btn-warning">
         </div>

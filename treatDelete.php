@@ -7,8 +7,8 @@
         $req->execute([$id]);
         if(!$don = $req->fetch())
         {
-            header("LOCATION:404.php");
             $req->closeCursor();
+            header("LOCATION:404.php");
         }
         $req->closeCursor();
 
